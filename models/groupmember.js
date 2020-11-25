@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      groupMember.belongsTo(models.group);
+      groupMember.belongsTo(models.user, {
+        as: "member",
+        foreignKey: "userId",
+      });
     }
   }
   groupMember.init(
