@@ -16,7 +16,7 @@ router.post("/:id/comment", auth, async (req, res) => {
       return res.status(404).send({ message: "This group cannot be found!" });
     }
     const { comment } = req.body;
-    const addComment = await GroupComment.create({
+    await GroupComment.create({
       comment,
       groupId: group.id,
       userId: loggedInUser.id,
@@ -33,6 +33,35 @@ router.post("/:id/comment", auth, async (req, res) => {
   } catch (e) {
     console.log(e);
   }
+});
+
+router.delete("/user/:id/remove", auth, async (req, res) => {
+  const userToRemove = req.params.id;
+  const { groupId } = req.body;
+  const findGroup = await Group.findByPk(groupId);
+
+  if (findGroup.dataValues.userId === req.user.id) {
+    try {
+      await GroupMember.destroy({
+        where: {
+          groupId: groupId,
+          userId: userToRemove,
+        },
+      });
+      const updatedGroup = await Group.findByPk(groupId, {
+        include: [
+          { model: User, as: "member" },
+          { model: GroupComment, include: [User] },
+        ],
+      });
+      return res.status(201).send({ message: "User removed", updatedGroup });
+    } catch (e) {
+      console.log(e);
+    }
+  } else
+    return res
+      .status(403)
+      .send({ message: "You are not authorized to perform this action!" });
 });
 
 module.exports = router;

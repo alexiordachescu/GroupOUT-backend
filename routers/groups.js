@@ -35,7 +35,7 @@ router.post("/:id/join", auth, async (req, res) => {
 
     const loggedInUser = req.user;
 
-    const join = await GroupMember.create({
+    await GroupMember.create({
       userId: loggedInUser.id,
       groupId: group.id,
     });
