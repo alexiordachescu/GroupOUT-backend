@@ -53,7 +53,10 @@ router.post("/:id/join", auth, async (req, res) => {
 router.get("/group/:id", auth, async (req, res) => {
   try {
     const details = await Group.findByPk(req.params.id, {
-      include: [{ model: User, as: "member" }, { model: GroupComment }],
+      include: [
+        { model: User, as: "member" },
+        { model: GroupComment, include: [User] },
+      ],
     });
     res.status(201).send(details);
   } catch (e) {
