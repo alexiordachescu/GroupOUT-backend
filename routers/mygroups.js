@@ -34,6 +34,7 @@ router.get("/member", auth, async (req, res) => {
         id: list,
         userId: { [Op.ne]: loggedInUser },
       },
+      include: [{ model: User, as: "member" }, { model: Tag }],
     });
 
     res.status(200).json(showGroups);
