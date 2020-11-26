@@ -4,6 +4,7 @@ const Group = require("../models").group;
 const User = require("../models").user;
 const Tag = require("../models").tag;
 const GroupMember = require("../models").groupMember;
+const GroupComment = require("../models").groupComment;
 
 const router = new Router();
 
@@ -44,6 +45,17 @@ router.post("/:id/join", auth, async (req, res) => {
     return res
       .status(201)
       .send({ message: "Successfully joined this group!", joined });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get("/group/:id", auth, async (req, res) => {
+  try {
+    const details = await Group.findByPk(req.params.id, {
+      include: [{ model: User, as: "member" }, { model: GroupComment }],
+    });
+    res.status(201).send(details);
   } catch (e) {
     console.log(e);
   }
