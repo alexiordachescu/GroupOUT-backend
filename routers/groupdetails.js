@@ -21,9 +21,15 @@ router.post("/:id/comment", auth, async (req, res) => {
       groupId: group.id,
       userId: loggedInUser.id,
     });
+    const newGroup = await Group.findByPk(req.params.id, {
+      include: [
+        { model: User, as: "member" },
+        { model: GroupComment, include: [User] },
+      ],
+    });
     return res
       .status(201)
-      .send({ message: "Comment successfully added", addComment });
+      .send({ message: "Comment successfully added", newGroup });
   } catch (e) {
     console.log(e);
   }
