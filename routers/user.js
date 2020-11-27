@@ -19,8 +19,8 @@ router.patch("/:id", auth, async (req, res) => {
       .status(404)
       .send({ message: "This user doesn't exist in our database", message });
   }
-  const { firstName, lastName, description, email } = req.body;
-  await user.update({ firstName, lastName, description, email });
+  const { firstName, lastName, description, email, imageUrl } = req.body;
+  await user.update({ firstName, lastName, description, email, imageUrl });
   return res.status(200).send({ user });
 });
 
