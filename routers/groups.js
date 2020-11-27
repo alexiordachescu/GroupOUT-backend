@@ -5,6 +5,7 @@ const User = require("../models").user;
 const Tag = require("../models").tag;
 const GroupMember = require("../models").groupMember;
 const GroupComment = require("../models").groupComment;
+const GroupTag = require("../models").groupTag;
 
 const router = new Router();
 
@@ -16,6 +17,36 @@ router.get("/", async (req, res, next) => {
     res.json(response);
   } catch (e) {
     next(e);
+  }
+});
+
+router.post("/createGroup", auth, async (req, res) => {
+  const { imageUrl, date, tags, description, groupSize } = req.body;
+
+  if (!tags || !description) {
+    return res.status(400).send({
+      message:
+        "A group must have at least one tag, a description and a maximum size",
+    });
+  }
+  try {
+    const newGroup = await Group.create({
+      imageUrl: imageUrl,
+      description: description,
+      maxUsers: groupSize,
+      date: date,
+      userId: req.user.id,
+    });
+
+    await GroupMember.create({
+      userId: req.user.id,
+      groupId: newGroup.dataValues.id,
+    });
+
+    await GroupTag.create({ groupId: newGroup.dataValues.id, tagId: tags });
+    return res.status(200).send({ message: "Group successfully created!" });
+  } catch (e) {
+    console.log(e);
   }
 });
 
