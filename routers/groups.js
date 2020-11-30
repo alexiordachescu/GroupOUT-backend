@@ -23,15 +23,19 @@ router.get("/", async (req, res, next) => {
 router.post("/createGroup", auth, async (req, res) => {
   const { imageUrl, date, tags, description, groupSize } = req.body;
 
-  if (!tags || !description) {
+  if (!tags || !description || !groupSize) {
     return res.status(400).send({
       message:
         "A group must have at least one tag, a description and a maximum size",
     });
   }
+
   try {
     const newGroup = await Group.create({
-      imageUrl: imageUrl,
+      imageUrl:
+        imageUrl == ""
+          ? "https://res.cloudinary.com/dmqbltypk/image/upload/v1606764213/portfolio/No_image_available_-_museum_usmdhx.svg"
+          : imageUrl,
       description: description,
       maxUsers: groupSize,
       date: date,
@@ -43,7 +47,11 @@ router.post("/createGroup", auth, async (req, res) => {
       groupId: newGroup.dataValues.id,
     });
 
-    await GroupTag.create({ groupId: newGroup.dataValues.id, tagId: tags });
+    for (i = 0; i < tags.length; i++) {
+      let tagId = tags[i];
+      await GroupTag.create({ groupId: newGroup.dataValues.id, tagId: tagId });
+    }
+
     return res.status(200).send({ message: "Group successfully created!" });
   } catch (e) {
     console.log(e);
