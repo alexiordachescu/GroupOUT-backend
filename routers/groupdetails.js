@@ -39,7 +39,6 @@ router.delete("/user/:id/remove", auth, async (req, res) => {
   const userToRemove = req.params.id;
   const { groupId } = req.body;
   const findGroup = await Group.findByPk(groupId);
-
   if (findGroup.dataValues.userId === req.user.id) {
     try {
       await GroupMember.destroy({
