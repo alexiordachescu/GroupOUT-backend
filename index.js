@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const groupRouter = require("./routers/groups");
 const authRouter = require("./routers/auth");
@@ -6,8 +7,7 @@ const myGroupsRouter = require("./routers/mygroups");
 const groupDetailsRouter = require("./routers/groupdetails");
 const userRouter = require("./routers/user");
 const tagRouter = require("./routers/tags");
-const PORT = 4000;
-const cors = require("cors");
+const { PORT } = require("./config/constants");
 
 // MiddleWares
 app.use(express.json());
