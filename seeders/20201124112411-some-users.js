@@ -13,7 +13,8 @@ module.exports = {
           email: "a@a.com",
           phone: 1234567,
           password: bcrypt.hashSync("test", SALT_ROUNDS),
-          imageUrl: "http://google.com",
+          imageUrl:
+            "https://res.cloudinary.com/dmqbltypk/image/upload/v1606666284/portfolio/ism40e8vz58v4lszetsz.jpg",
           description:
             "This dynamic man has wide gray eyes that are like two silver coins. His fine, straight, beige hair is worn in a style that reminds you of a monk's cowl.",
           createdAt: new Date(),

@@ -13,7 +13,7 @@ module.exports = {
       {
         groupId: 1,
         userId: 2,
-        comment: "Yeah, the kickoff is in 2 hours :-(",
+        comment: "Yeah, the kickoff is in 2 months :-(",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
