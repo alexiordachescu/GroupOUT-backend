@@ -12,7 +12,7 @@ module.exports = {
     dialect: "mysql",
   },
   production: {
-    database: "DATABASE_URL",
+    use_env_variable: "DATABASE_URL",
 
     dialect: "postgres",
   },
