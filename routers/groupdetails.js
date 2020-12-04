@@ -63,4 +63,29 @@ router.delete("/user/:id/remove", auth, async (req, res) => {
       .send({ message: "You are not authorized to perform this action!" });
 });
 
+router.delete("/user/:id/leave", auth, async (req, res) => {
+  const userToLeave = req.params.id;
+  const { groupId } = req.body;
+
+  try {
+    await GroupMember.destroy({
+      where: {
+        groupId: groupId,
+        userId: userToLeave,
+      },
+    });
+    const updatedGroup = await Group.findByPk(groupId, {
+      include: [
+        { model: User, as: "member" },
+        { model: GroupComment, include: [User] },
+      ],
+    });
+    return res
+      .status(201)
+      .send({ message: "You just left this group", updatedGroup });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 module.exports = router;

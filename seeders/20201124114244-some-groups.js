@@ -14,8 +14,18 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
+        imageUrl: "https://adn2.fcupdate.nl/news/132068.jpg",
+        userId: 1,
+        maxUsers: 4,
+        description:
+          "We are 2 expats looking for locals to show us the ins and outs of Amsterdam :-)",
+        date: "2020-02-24",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
         imageUrl:
-          "https://res.cloudinary.com/dmqbltypk/image/upload/v1606858022/portfolio/tqblbmy7g8vej1oj8rmo.jpg",
+          "https://res.cloudinary.com/dmqbltypk/image/upload/v1606930275/portfolio/topfay74wxl9z0q6bjlm.jpg",
         userId: 2,
         maxUsers: 6,
         description:
