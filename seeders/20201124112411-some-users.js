@@ -26,7 +26,8 @@ module.exports = {
           email: "c@c.com",
           phone: 1234567,
           password: bcrypt.hashSync("test", SALT_ROUNDS),
-          imageUrl: "http://google.com",
+          imageUrl:
+            "https://res.cloudinary.com/dmqbltypk/image/upload/v1606942108/portfolio/oglwmu9qmhh1lqduwvef.jpg",
           description:
             "This gentleman makes you think of an industrious beaver. He has deep-set brown eyes that are like two bronze coins.",
           createdAt: new Date(),
@@ -38,7 +39,8 @@ module.exports = {
           email: "s@s.com",
           phone: 1234567,
           password: bcrypt.hashSync("test", SALT_ROUNDS),
-          imageUrl: "http://google.com",
+          imageUrl:
+            "https://res.cloudinary.com/dmqbltypk/image/upload/v1606942597/portfolio/ossd3dzx1azw4njbnedv.jpg",
           description:
             "This girl makes you think of a raging river. She has hooded emerald eyes. Her fine, straight, blue hair is worn in a style that reminds you of a rooster's crest.",
           createdAt: new Date(),
@@ -50,7 +52,8 @@ module.exports = {
           email: "m@m.com",
           phone: 1234567,
           password: bcrypt.hashSync("test", SALT_ROUNDS),
-          imageUrl: "http://google.com",
+          imageUrl:
+            "https://res.cloudinary.com/dmqbltypk/image/upload/v1606941910/portfolio/lujrqs5xkrye9i4etwbp.jpg",
           description:
             "This lady makes you think of a fluttering hummingbird. She has round violet eyes that are like two windows on the evening sky.",
           createdAt: new Date(),
@@ -74,7 +77,8 @@ module.exports = {
           email: "ma@ma.com",
           phone: 1234567,
           password: bcrypt.hashSync("test", SALT_ROUNDS),
-          imageUrl: "http://google.com",
+          imageUrl:
+            "https://res.cloudinary.com/dmqbltypk/image/upload/v1606941713/portfolio/xxcz7k1fcso1hkiw7vhf.jpg",
           description:
             "Standing 4'8 tall, and statuesque with tan skin, this man has a very aggressive feel about him.",
           createdAt: new Date(),
@@ -86,7 +90,8 @@ module.exports = {
           email: "k@k.com",
           phone: 1234567,
           password: bcrypt.hashSync("test", SALT_ROUNDS),
-          imageUrl: "http://google.com",
+          imageUrl:
+            "https://res.cloudinary.com/dmqbltypk/image/upload/v1606941805/portfolio/vtfnv8xiul4nxdv2hnxf.jpg",
           description:
             "She has stern dark brown eyes and her short, straight, black hair is worn combed over.",
 
